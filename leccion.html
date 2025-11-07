@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lección - Aprende Aviación</title>
+  <link rel="stylesheet" href="estilos.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header class="barra-superior">
+    <h1>✈️ Lección</h1>
+    <button onclick="window.location.href='niveles.html'" class="btn-secundario">← Volver</button>
+  </header>
+
+  <main class="contenido fade-in">
+  <!-- 🧭 Pantalla de introducción antes del quiz -->
+<div id="introLeccion">
+  <h2 id="tituloLeccion">Cargando lección...</h2>
+  <p id="descripcionLeccion">Explora el contenido de esta lección antes de comenzar el desafío.</p>
+
+  <div id="contenidoLeccion" class="contenido-leccion">
+    <!-- Aquí se insertará automáticamente la información educativa -->
+  </div>
+
+  <button id="btnComenzar" class="btn-principal">Comenzar lección 🚀</button>
+
+  <button id="btnNarrar" class="btn-narrar">🎧 Escuchar resumen</button>
+
+</div>
+
+  <!-- 📘 Contenedor de preguntas (oculto hasta que se pulse comenzar) -->
+  <div id="contenedorPreguntas" style="display:none;"></div>
+
+  <button id="btnSiguiente" class="btn-principal" style="display:none;">Siguiente pregunta ➜</button>
+</main>
+
+  <script>
+  const contenedorPreguntas = document.getElementById('contenedorPreguntas');
+  const btnSiguiente = document.getElementById('btnSiguiente');
+  const tituloLeccion = document.getElementById('tituloLeccion');
+  const introLeccion = document.getElementById('introLeccion');
+  const btnComenzar = document.getElementById('btnComenzar');
+
+  let preguntas = [];
+  let indiceActual = 0;
+  let puntaje = 0;
+
+  // 🔹 Capturar el tema desde la URL
+  const urlParams = new URLSearchParams(window.location.search);
+  const tema = urlParams.get("tema");
+
+  // 🔹 Información de cada lección
+  const temasInfo = {
+  partes_del_avion: {
+    nombre: "Partes del avión ✈️",
+    descripcion: "Aprende las partes esenciales de una aeronave: fuselaje, alas, timón, alerones y tren de aterrizaje.",
+    contenido: `
+      <ul class="lista-leccion">
+        <li><strong>Fuselaje:</strong> Es el cuerpo principal del avión donde se ubican los pasajeros y la carga.</li>
+        <li><strong>Alas:</strong> Generan la sustentación necesaria para volar.</li>
+        <li><strong>Timón de dirección:</strong> Controla el movimiento lateral (guiñada).</li>
+        <li><strong>Alerones:</strong> Permiten el movimiento de alabeo o inclinación lateral.</li>
+        <li><strong>Tren de aterrizaje:</strong> Soporta la aeronave en el suelo durante el despegue y el aterrizaje.</li>
+      </ul>
+      <img src="https://uploads.onecompiler.io/43d6bw78q/443kjg5uy/Air%60plne-Photoroom.png" alt="Partes del avión" class="img-leccion">
+    `
+  },
+  aerodinamica: {
+    nombre: "Aerodinámica básica 🌀",
+    descripcion: "Descubre las cuatro fuerzas del vuelo: sustentación, peso, empuje y resistencia.",
+    contenido: `
+      <p>La aerodinámica estudia cómo el aire interactúa con el avión en vuelo. Existen <strong>cuatro fuerzas fundamentales</strong>:</p>
+      <ul class="lista-leccion">
+        <li>✈️ <strong>Sustentación:</strong> fuerza hacia arriba generada por las alas.</li>
+        <li>⬇️ <strong>Peso:</strong> fuerza hacia abajo debido a la gravedad.</li>
+        <li>➡️ <strong>Empuje:</strong> producido por los motores o hélices.</li>
+        <li>⬅️ <strong>Resistencia:</strong> oposición del aire al avance.</li>
+      </ul>
+      <img src="https://uploads.onecompiler.io/43d6bw78q/443kjg5uy/image%20212.png" alt="Fuerzas del vuelo" class="img-leccion">
+    `
+  },
+  ingles_aeronautico: {
+    nombre: "Inglés aeronáutico 🗣️",
+    descripcion: "Domina las frases más comunes utilizadas entre pilotos y controladores aéreos.",
+    contenido: `
+      <p>El inglés aeronáutico es el idioma estándar de comunicación aérea. Algunas expresiones básicas son:</p>
+      <ul class="lista-leccion">
+        <li><strong>Cleared for takeoff:</strong> Autorizado para despegar.</li>
+        <li><strong>Roger:</strong> Mensaje recibido.</li>
+        <li><strong>Stand by:</strong> Espere un momento.</li>
+        <li><strong>Mayday:</strong> Emergencia grave.</li>
+      </ul>
+      <img src="https://uploads.onecompiler.io/43d6bw78q/443kjg5uy/Language.png" alt="Comunicación piloto-control" class="img-leccion">
+    `
+  },
+  meteorologia: {
+    nombre: "Meteorología aeronáutica ☁️",
+    descripcion: "Comprende cómo el clima afecta el vuelo: tipos de nubes, presión y velocidad del viento.",
+    contenido: `
+      <p>El conocimiento del clima es vital para la seguridad aérea. Algunos conceptos básicos:</p>
+      <ul class="lista-leccion">
+        <li><strong>Cumulonimbo:</strong> nubes de tormenta eléctrica.</li>
+        <li><strong>Presión atmosférica:</strong> influye en la lectura del altímetro.</li>
+        <li><strong>Viento cruzado:</strong> afecta el control en despegue y aterrizaje.</li>
+      </ul>
+      <img src="https://upload.wikimedia.org/wikipedia/commons/7/7b/CumulonimbusClouds.jpg" alt="Cumulonimbos" class="img-leccion">
+    `
+  },
+  instrumentos_de_vuelo: {
+    nombre: "Instrumentos de vuelo 🧭",
+    descripcion: "Conoce los instrumentos clave de cabina: altímetro, horizonte artificial, anemómetro y brújula.",
+    contenido: `
+      <ul class="lista-leccion">
+        <li><strong>Altímetro:</strong> Indica la altitud respecto al nivel del mar.</li>
+        <li><strong>Anemómetro:</strong> Mide la velocidad del aire.</li>
+        <li><strong>Horizonte artificial:</strong> Muestra la actitud del avión.</li>
+        <li><strong>Brújula:</strong> Indica la dirección o rumbo magnético.</li>
+      </ul>
+      <img src="https://upload.wikimedia.org/wikipedia/commons/5/5b/Basic_flight_instruments_spanish.png" alt="Instrumentos básicos" class="img-leccion">
+    `
+  },
+  reglamentos: {
+    nombre: "Reglamentos aeronáuticos 📘",
+    descripcion: "Conoce las normas que regulan la aviación civil a nivel nacional e internacional.",
+    contenido: `
+      <p>Las regulaciones garantizan la seguridad de las operaciones aéreas. Están establecidas por organismos nacionales e internacionales.</p>
+      <ul class="lista-leccion">
+        <li><strong>OACI:</strong> Organismo internacional que dicta las normas de aviación civil.</li>
+        <li><strong>Aerocivil:</strong> Autoridad que regula la aviación civil en Colombia.</li>
+        <li><strong>Licencia de piloto:</strong> Documento que certifica la capacitación de un piloto.</li>
+      </ul>
+      <img src="https://upload.wikimedia.org/wikipedia/commons/9/9d/ICAO_logo.png" alt="OACI" class="img-leccion">
+    `
+  },
+  controles_y_maniobras: {
+    nombre: "Controles y maniobras 🎚️",
+    descripcion: "Aprende a manejar los controles del avión y a realizar maniobras básicas de vuelo.",
+    contenido: `
+      <ul class="lista-leccion">
+        <li><strong>Elevadores:</strong> Controlan la altitud y el movimiento de cabeceo.</li>
+        <li><strong>Alerones:</strong> Permiten girar el avión hacia la izquierda o derecha.</li>
+        <li><strong>Timón de dirección:</strong> Controla el movimiento lateral (guiñada).</li>
+        <li><strong>Flaps:</strong> Incrementan la sustentación durante el despegue y aterrizaje.</li>
+      </ul>
+      <img src="https://upload.wikimedia.org/wikipedia/commons/4/46/Aileron_and_flap_diagram.svg" alt="Controles de vuelo" class="img-leccion">
+    `
+  },
+  navegacion_aerea: {
+    nombre: "Navegación aérea 🗺️",
+    descripcion: "Descubre cómo los pilotos determinan su posición y rumbo en el espacio aéreo.",
+    contenido: `
+      <p>La navegación aérea se basa en instrumentos, coordenadas y señales de radio para ubicar y guiar una aeronave.</p>
+      <ul class="lista-leccion">
+        <li><strong>GPS:</strong> Sistema satelital que ofrece posicionamiento global.</li>
+        <li><strong>VOR:</strong> Sistema de navegación basado en radiofrecuencia.</li>
+        <li><strong>Indicador de rumbo:</strong> Muestra la dirección del avión respecto al norte.</li>
+      </ul>
+      <img src="https://upload.wikimedia.org/wikipedia/commons/4/4e/Air_navigation_chart.jpg" alt="Carta de navegación" class="img-leccion">
+    `
+  },
+  procedimientos_de_emergencia: {
+    nombre: "Procedimientos de emergencia ⚠️",
+    descripcion: "Conoce las acciones que se deben seguir ante fallos o situaciones críticas en vuelo.",
+    contenido: `
+      <p>Los pilotos deben estar entrenados para actuar de forma rápida y segura durante una emergencia.</p>
+      <ul class="lista-leccion">
+        <li><strong>Pérdida de motor:</strong> Mantener velocidad de planeo y buscar zona de aterrizaje.</li>
+        <li><strong>Comunicación:</strong> Usar la radio de emergencia para avisar a control.</li>
+        <li><strong>Fuego a bordo:</strong> Identificar el origen y aplicar procedimientos de extinción.</li>
+      </ul>
+      <img src="https://upload.wikimedia.org/wikipedia/commons/7/79/Emergency_landing_Boeing.jpg" alt="Emergencia aérea" class="img-leccion">
+    `
+  },
+  seguridad_aerea: {
+    nombre: "Seguridad aérea 🛡️",
+    descripcion: "Aprende los principios y sistemas que protegen la operación aérea.",
+    contenido: `
+      <p>La seguridad aérea busca prevenir accidentes mediante protocolos, formación y tecnología.</p>
+      <ul class="lista-leccion">
+        <li><strong>CRM (Crew Resource Management):</strong> Coordinación efectiva entre los miembros de la tripulación.</li>
+        <li><strong>Mantenimiento preventivo:</strong> Asegura que los equipos funcionen correctamente.</li>
+        <li><strong>Investigación de accidentes:</strong> Permite aprender de los errores para evitarlos.</li>
+        <li><strong>Organismos:</strong> La NTSB investiga accidentes; la OACI establece estándares globales.</li>
+      </ul>
+      <img src="https://upload.wikimedia.org/wikipedia/commons/0/05/Aviation_Safety_Management_System.jpg" alt="Seguridad aérea" class="img-leccion">
+    `
+  }
+};
+
+  // 🔹 Mostrar título y descripción del tema
+  const info = temasInfo[tema] || { 
+    nombre: "Lección de aviación", 
+    descripcion: "Explora este tema antes de comenzar." 
+  };
+  tituloLeccion.textContent = info.nombre;
+  document.getElementById("descripcionLeccion").textContent = info.descripcion;
+
+  document.getElementById("contenidoLeccion").innerHTML = info.contenido || "<p>Material introductorio no disponible.</p>";
+
+  // 🔹 Cargar preguntas desde el archivo JSON
+async function cargarPreguntas() {
+  try {
+    const respuesta = await fetch('preguntas.json');
+    const datos = await respuesta.json();
+
+    const temaSeguro = (tema || "").toLowerCase(); // evita errores si tema es null
+
+   function normalizar(texto) {
+  return texto
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "") // elimina tildes
+    .replace(/ /g, "_"); // reemplaza espacios por _
+}
+
+const nivel = datos.niveles.find(n =>
+  normalizar(n.titulo).includes(normalizar(temaSeguro))
+);
+
+    if (nivel) {
+      preguntas = nivel.preguntas;
+      tituloLeccion.textContent = nivel.titulo;
+      mostrarPregunta();
+    } else {
+      contenedorPreguntas.innerHTML = `
+        <p>⚠️ No se encontró la lección correspondiente a este tema.</p>
+        <button class="btn-principal" onclick="window.location.href='niveles.html'">Volver a niveles</button>
+      `;
+      console.warn(`Tema '${tema}' no encontrado en preguntas.json`);
+    }
+  } catch (error) {
+    contenedorPreguntas.innerHTML = "<p>Error al cargar las preguntas 😢</p>";
+    console.error(error);
+  }
+}
+
+  // 🔹 Mostrar una pregunta
+  function mostrarPregunta() {
+    const pregunta = preguntas[indiceActual];
+    contenedorPreguntas.innerHTML = `
+      <h3>${pregunta.pregunta}</h3>
+      <div class="opciones">
+        ${pregunta.opciones.map(op => `<button class="opcion">${op}</button>`).join('')}
+      </div>
+    `;
+    document.querySelectorAll('.opcion').forEach(btn => {
+      btn.addEventListener('click', () => verificarRespuesta(btn.textContent));
+    });
+  }
+
+  // 🔹 Verificar respuesta
+  function verificarRespuesta(respuestaSeleccionada) {
+    const pregunta = preguntas[indiceActual];
+    const botones = document.querySelectorAll('.opcion');
+    const sonidoCorrecto = document.getElementById('sonidoCorrecto');
+    const sonidoIncorrecto = document.getElementById('sonidoIncorrecto');
+
+    botones.forEach(boton => {
+      boton.disabled = true;
+      if (boton.textContent === pregunta.respuesta) {
+        boton.classList.add('correcta');
+      } else if (boton.textContent === respuestaSeleccionada) {
+        boton.classList.add('incorrecta');
+      }
+    });
+
+    if (respuestaSeleccionada === pregunta.respuesta) {
+      puntaje++;
+      sonidoCorrecto.currentTime = 0;
+      sonidoCorrecto.play();
+      lanzarConfeti();
+    } else {
+      sonidoIncorrecto.currentTime = 0;
+      sonidoIncorrecto.play();
+      if (window.navigator.vibrate) window.navigator.vibrate(200);
+    }
+
+    btnSiguiente.style.display = 'block';
+  }
+
+  // 🔹 Botón siguiente
+  btnSiguiente.addEventListener('click', () => {
+    indiceActual++;
+    if (indiceActual < preguntas.length) {
+      btnSiguiente.style.display = 'none';
+      mostrarPregunta();
+    } else {
+      finalizarLeccion();
+    }
+  });
+
+ function finalizarLeccion() {
+  contenedorPreguntas.innerHTML = `
+    <h3>✅ ¡Lección completada!</h3>
+    <p>Tu puntuación: ${puntaje} / ${preguntas.length}</p>
+    <button class="btn-principal" onclick="window.location.href='niveles.html'">Volver a niveles</button>
+  `;
+  btnSiguiente.style.display = 'none';
+
+  // 🎯 Actualizar puntos totales
+  let puntosTotales = parseInt(localStorage.getItem('totalPuntos') || '0');
+  puntosTotales += puntaje * 10;
+  localStorage.setItem('totalPuntos', puntosTotales);
+
+  // 🏆 Actualizar progreso (desbloquear siguiente nivel)
+  const nivelActual = parseInt(localStorage.getItem('nivelActual') || '1');
+  let progreso = parseInt(localStorage.getItem('progreso') || '1');
+
+  if (nivelActual >= progreso) {
+    localStorage.setItem('progreso', nivelActual + 1);
+  }
+
+  // 🔥 Guardar fecha de última lección para la racha
+  const hoy = new Date().toDateString();
+  localStorage.setItem('ultimaFecha', hoy);
+}
+
+  // 🔹 Efecto confeti
+  function lanzarConfeti() {
+    const cantidad = 30;
+    for (let i = 0; i < cantidad; i++) {
+      const confeti = document.createElement("div");
+      confeti.classList.add("confeti");
+      confeti.style.left = Math.random() * 100 + "vw";
+      confeti.style.backgroundColor = ["#4CAF50", "#81C784", "#A5D6A7"][Math.floor(Math.random() * 3)];
+      document.body.appendChild(confeti);
+      setTimeout(() => confeti.remove(), 3000);
+    }
+  }
+
+  // 🔹 Mostrar preguntas al pulsar "Comenzar"
+  btnComenzar.addEventListener("click", () => {
+    introLeccion.style.display = "none";
+    contenedorPreguntas.style.display = "block";
+    cargarPreguntas();
+  });
+
+  // 🎙️ Narrador de contenido educativo
+const btnNarrar = document.getElementById("btnNarrar");
+
+if (btnNarrar) {
+  btnNarrar.addEventListener("click", () => {
+    const texto = `${info.nombre}. ${info.descripcion.replace(/<[^>]+>/g, "")}`;
+    narrarTexto(texto);
+  });
+}
+
+function narrarTexto(texto) {
+  if (!window.speechSynthesis) {
+    alert("⚠️ Tu navegador no soporta narración de voz.");
+    return;
+  }
+
+  // Detiene cualquier narración anterior
+  window.speechSynthesis.cancel();
+
+  const mensaje = new SpeechSynthesisUtterance(texto);
+  mensaje.lang = "es-ES"; // español
+  mensaje.pitch = 1;
+  mensaje.rate = 1; // velocidad
+  mensaje.volume = 1;
+
+  // Intenta elegir una voz en español si está disponible
+  const voces = window.speechSynthesis.getVoices();
+  const vozEspanol = voces.find(v => v.lang.startsWith("es"));
+  if (vozEspanol) mensaje.voice = vozEspanol;
+
+  window.speechSynthesis.speak(mensaje);
+}
+
+</script>
+  <audio id="sonidoCorrecto" preload="auto">
+  <source src="Audio/Correct sound.mp3" type="audio/mp3">
+</audio>
+<audio id="sonidoIncorrecto" preload="auto">
+  <source src="Audio/invalid-selection-39351.mp3" type="audio/mp3">
+</audio>
+</body>
+</html>

@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Perfil - Aprende Aviación</title>
+  <link rel="stylesheet" href="estilos.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header class="barra-superior">
+    <h1>🛫 Aprende Aviación</h1>
+    <div class="usuario">
+      <button onclick="window.location.href='niveles.html'" class="btn-secundario">← Volver</button>
+      <button id="cerrarSesion" class="btn-secundario">Cerrar sesión</button>
+    </div>
+  </header>
+
+  <main class="contenido fade-in">
+    <div class="tarjeta perfil-card">
+      <div class="perfil-header">
+        <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="avatar" class="avatar">
+        <h2 id="nombreUsuario">Usuario</h2>
+      </div>
+
+      <div class="perfil-info">
+        <div class="stat">
+          <h3>⭐ Puntos totales</h3>
+          <p id="totalPuntos">0</p>
+        </div>
+        <div class="stat">
+          <h3>🔥 Racha diaria</h3>
+          <p id="racha">0 días</p>
+        </div>
+        <div class="stat">
+          <h3>🎯 Nivel desbloqueado</h3>
+          <p id="nivel">1</p>
+        </div>
+      </div>
+<!-- 📊 Panel de Progreso General -->
+<div class="perfil-progreso">
+  <h2>📊 Progreso general</h2>
+  <div class="barra-contenedor">
+    <div id="barraProgreso" class="barra-progreso"></div>
+  </div>
+  <p id="porcentajeTexto">0% completado</p>
+</div>
+      <!-- 🏅 Sección de Logros -->
+      <div class="perfil-logros">
+        <h2>🏅 Logros obtenidos</h2>
+        <div id="listaLogros" class="logros-grid">
+          <!-- Los logros aparecerán dinámicamente aquí -->
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    // --- Recuperar datos guardados del usuario ---
+    const usuario = localStorage.getItem('usuario');
+    const nombreSpan = document.getElementById('nombreUsuario');
+    const cerrarSesion = document.getElementById('cerrarSesion');
+
+    if (!usuario) {
+      window.location.href = 'index.html';
+    } else {
+      nombreSpan.textContent = usuario;
+    }
+
+    // Cargar estadísticas desde localStorage
+    const totalPuntos = parseInt(localStorage.getItem('totalPuntos') || '0');
+    const racha = parseInt(localStorage.getItem('racha') || '0');
+    const progreso = parseInt(localStorage.getItem('progreso') || '1');
+
+    document.getElementById('totalPuntos').textContent = totalPuntos;
+    document.getElementById('racha').textContent = racha + ' días';
+    document.getElementById('nivel').textContent = progreso - 1;
+
+    // --- Cerrar sesión ---
+    cerrarSesion.addEventListener('click', () => {
+      localStorage.clear();
+      window.location.href = 'index.html';
+    });
+
+    // --- SISTEMA DE LOGROS ---
+    const logros = [
+      { id: 'primeraLeccion', nombre: 'Primera lección completada', icono: '🥇', condicion: () => progreso > 1 },
+      { id: 'racha3', nombre: 'Racha de 3 días', icono: '🔥', condicion: () => racha >= 3 },
+      { id: 'puntos100', nombre: '100 puntos acumulados', icono: '⭐', condicion: () => totalPuntos >= 100 },
+    ];
+
+    const listaLogros = document.getElementById('listaLogros');
+
+    logros.forEach(logro => {
+      const desbloqueado = logro.condicion();
+      const item = document.createElement('div');
+      item.classList.add('logro', desbloqueado ? 'logro-activo' : 'logro-bloqueado');
+      item.innerHTML = `
+        <div class="icono">${logro.icono}</div>
+        <p>${logro.nombre}</p>
+      `;
+      listaLogros.appendChild(item);
+    });
+    function actualizarProgreso() {
+  const progreso = parseInt(localStorage.getItem('progreso') || '1');
+  const totalNiveles = 10; // Puedes ajustar según la cantidad de niveles de tu app
+  const porcentaje = Math.min(((progreso - 1) / totalNiveles) * 100, 100);
+
+  const barra = document.getElementById('barraProgreso');
+  const texto = document.getElementById('porcentajeTexto');
+
+  barra.style.width = porcentaje + '%';
+  texto.textContent = Math.round(porcentaje) + '% completado';
+}
+
+// Llamar la función al cargar el perfil
+actualizarProgreso();
+  </script>
+</body>
+</html>

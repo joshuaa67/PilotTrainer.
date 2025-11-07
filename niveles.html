@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Niveles - Aprende Aviación</title>
+  <link rel="stylesheet" href="estilos.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header class="barra-superior">
+  <h1>🛫 Aprende Aviación</h1>
+  <div class="usuario">
+    <div class="stats">
+      <span>⭐ <span id="totalPuntos">0</span></span>
+      <span>🔥 <span id="racha">0</span> días</span>
+    </div>
+    <span>👤 <span id="nombreUsuario"></span></span>
+    <button id="cerrarSesion" class="btn-secundario">Cerrar sesión</button>
+      </div>
+</header>
+<div id="bienvenida" class="bienvenida"></div>
+  <main class="contenido fade-in">
+    <h2>Selecciona una lección</h2>
+<button onclick="window.location.href='perfil.html'" class="btn-principal">👤 Ver mi perfil</button>
+
+    <div class="nivel" data-nivel="1">
+  <h3>Lección 1</h3>
+  <p>✈️ Partes del avión</p>
+</div>
+<div class="nivel bloqueado" data-nivel="2">
+  <h3>Lección 2</h3>
+  <p>🌀 Aerodinámica básica</p>
+</div>
+<div class="nivel bloqueado" data-nivel="3">
+  <h3>Lección 3</h3>
+  <p>🗣️ Inglés aeronáutico</p>
+</div>
+<div class="nivel bloqueado" data-nivel="4">
+  <h3>Lección 4</h3>
+  <p>🌤️ Meteorología aeronáutica</p>
+</div>
+<div class="nivel bloqueado" data-nivel="5">
+  <h3>Lección 5</h3>
+  <p>🧭 Instrumentos de vuelo</p>
+</div>
+
+<div class="nivel bloqueado" data-nivel="6">
+  <h3>Lección 6</h3>
+  <p>📘 Reglamentos aeronáuticos</p>
+</div>
+
+<div class="nivel bloqueado" data-nivel="7">
+  <h3>Lección 7</h3>
+  <p>🎚️ Controles y maniobras</p>
+</div>
+
+<div class="nivel bloqueado" data-nivel="8">
+  <h3>Lección 8</h3>
+  <p>🗺️ Navegacion aerea</p>
+</div>
+
+<div class="nivel bloqueado" data-nivel="9">
+  <h3>Lección 9</h3>
+  <p>⚠️ Procedimientos de emergencia </p>
+</div>
+
+<div class="nivel bloqueado" data-nivel="10">
+  <h3>Lección 10</h3>
+  <p>🛡️ Seguridad aérea</p>
+</div>
+
+      <button onclick="window.location.href='ruta.html'" class="btn-principal">🗺️ Ver ruta de aprendizaje</button>
+
+    </div>
+  </main>
+
+  <script>
+    // Recuperar usuario
+    const usuario = localStorage.getItem('usuario');
+    const nombreSpan = document.getElementById('nombreUsuario');
+    const cerrarSesion = document.getElementById('cerrarSesion');
+    const niveles = document.querySelectorAll('.nivel');
+
+    if (!usuario) {
+      window.location.href = 'index.html';
+    } else {
+      nombreSpan.textContent = usuario;
+    }
+
+    // Cerrar sesión
+    cerrarSesion.addEventListener('click', () => {
+      localStorage.clear();
+      window.location.href = 'index.html';
+    });
+
+    // Recuperar progreso
+    let progreso = parseInt(localStorage.getItem('progreso')) || 1;
+
+// 🧭 Navegar a la lección
+niveles.forEach(nivel => {
+  nivel.addEventListener('click', () => {
+    if (nivel.classList.contains('bloqueado')) {
+      alert('🔒 Esta lección aún está bloqueada. ¡Completa la anterior!');
+      return;
+    }
+
+    const nivelTema = {
+  1: "partes_del_avion",
+  2: "aerodinamica",
+  3: "ingles_aeronautico",
+  4: "meteorologia",
+  5: "instrumentos_de_vuelo",
+  6: "reglamentos",
+  7: "controles_y_maniobras",
+  8: "navegacion_aerea",
+  9: "procedimientos_de_emergencia",
+  10: "seguridad_aerea"
+};
+
+    const temaSeleccionado = nivelTema[nivel.dataset.nivel];
+    if (temaSeleccionado) {
+      // Guarda el número de nivel actual
+      localStorage.setItem('nivelActual', nivel.dataset.nivel);
+      // Redirige a la página de lección con el tema correcto
+      window.location.href = `leccion.html?tema=${temaSeleccionado}`;
+    } else {
+      alert("⚠️ Tema no encontrado para esta lección.");
+    }
+  });
+});
+
+    // Desbloquear niveles según progreso
+    niveles.forEach(nivel => {
+      const num = parseInt(nivel.dataset.nivel);
+      if (num <= progreso) {
+        nivel.classList.remove('bloqueado');
+      }
+    });
+
+        const totalPuntosEl = document.getElementById('totalPuntos');
+const rachaEl = document.getElementById('racha');
+
+// Cargar datos del usuario
+let totalPuntos = parseInt(localStorage.getItem('totalPuntos')) || 0;
+let ultimaFecha = localStorage.getItem('ultimaFecha');
+let racha = parseInt(localStorage.getItem('racha')) || 0;
+
+// Actualizar racha si el usuario entró un nuevo día
+const hoy = new Date().toDateString();
+if (ultimaFecha !== hoy) {
+  const ayer = new Date(Date.now() - 86400000).toDateString();
+  if (ultimaFecha === ayer) {
+    racha += 1; // Suma racha
+  } else {
+    racha = 1; // Reinicia racha
+  }
+  localStorage.setItem('ultimaFecha', hoy);
+  localStorage.setItem('racha', racha);
+}
+
+// Mostrar valores en pantalla
+totalPuntosEl.textContent = totalPuntos;
+rachaEl.textContent = racha;
+
+const usuarioActivo = localStorage.getItem("usuarioActivo");
+
+// Muestra saludo
+const bienvenida = document.getElementById("bienvenida");
+
+if (usuarioActivo) {
+  bienvenida.textContent = `👋 ¡Bienvenido, ${usuarioActivo}! Selecciona tu nivel de aprendizaje ✈️`;
+} else {
+  bienvenida.textContent = "👋 ¡Bienvenido! Selecciona tu nivel de aprendizaje ✈️";
+}
+  </script>
+<script>
+  const sonido = document.getElementById('sonidoAmbiente');
+  const btnSonido = document.getElementById('btnSonido');
+  let activo = false;
+
+  btnSonido.addEventListener('click', () => {
+    if (!activo) {
+      sonido.play();
+      btnSonido.textContent = '🔈';
+      btnSonido.classList.remove('mute');
+      activo = true;
+    } else {
+      sonido.pause();
+      btnSonido.textContent = '🔇';
+      btnSonido.classList.add('mute');
+      activo = false;
+    }
+  });
+</script>
+<audio id="sonidoAmbiente" loop preload="auto">
+  <source src="Audio/Temporizador POMODORO 25_5 con RUIDO AZUL para TDAH_ Máxima CONCENTRACIÓN para Estudiar y Trabajar [OFE9RKUYlSY].mp3" type="audio/mp3">
+  Tu navegador no soporta audio HTML5.
+</audio>
+
+<!-- Botón de sonido -->
+<button id="btnSonido" class="boton-sonido" title="Activar o desactivar sonido">🔇</button>
+<style>
+  #btnSonido {
+    position: fixed !important;
+    top: 90px !important; /* debajo del header */
+    right: 30px !important; /* alineado con cerrar sesión */
+    background-color: #009688 !important;
+    color: #fff !important;
+    border: none !important;
+    border-radius: 50% !important;
+    width: 55px !important;
+    height: 55px !important;
+    font-size: 1.4rem !important;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3) !important;
+    cursor: pointer !important;
+    z-index: 9999 !important;
+    transition: transform 0.3s ease, background-color 0.3s ease !important;
+  }
+
+  #btnSonido:hover {
+    transform: scale(1.1) !important;
+    background-color: #00796b !important;
+  }
+
+  #btnSonido.mute {
+    background-color: #e53935 !important;
+  }
+</style>
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const sonido = document.getElementById("sonidoAmbiente");
+    const btnSonido = document.getElementById("btnSonido");
+    let activo = false;
+
+    // Fade in/out
+    function fadeAudio(audio, targetVolume, duration) {
+      const intervalTime = 50;
+      const steps = duration / intervalTime;
+      const step = (targetVolume - audio.volume) / steps;
+      const interval = setInterval(() => {
+        audio.volume = Math.min(Math.max(audio.volume + step, 0), 1);
+        if ((step > 0 && audio.volume >= targetVolume) || (step < 0 && audio.volume <= targetVolume)) {
+          clearInterval(interval);
+        }
+      }, intervalTime);
+    }
+
+    // Controlador de clic
+    btnSonido.addEventListener("click", async () => {
+      try {
+        if (!activo) {
+          await sonido.play();
+          sonido.volume = 0;
+          fadeAudio(sonido, 0.4, 1500);
+          btnSonido.textContent = "🔊";
+          btnSonido.classList.remove("mute");
+          activo = true;
+        } else {
+          fadeAudio(sonido, 0, 1000);
+          setTimeout(() => sonido.pause(), 1000);
+          btnSonido.textContent = "🔇";
+          btnSonido.classList.add("mute");
+          activo = false;
+        }
+      } catch (error) {
+        console.warn("⚠️ No se pudo reproducir el audio hasta que el usuario interactúe.");
+        alert("Por favor, haz clic nuevamente para activar el sonido 🎧");
+      }
+    });
+  });
+</script>
+</body>
+<div class="nubes-bg"></div>
+<img id="avionAnimado" src="https://uploads.onecompiler.io/43d6bw78q/443j6f262/png-transparent-travel-drawing-airplane-aircraft-vehicle-model-aircraft-line-airliner-flap-removebg-preview.png" alt="avion">
+  </html>

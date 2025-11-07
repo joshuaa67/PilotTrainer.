@@ -1,0 +1,265 @@
+{
+  "niveles": [
+    {
+      "id": 1,
+      "titulo": "Partes del avión",
+      "preguntas": [
+        {
+          "pregunta": "¿Qué parte del avión genera la sustentación?",
+          "opciones": ["Ala", "Fuselaje", "Timón", "Tren de aterrizaje"],
+          "respuesta": "Ala"
+        },
+        {
+          "pregunta": "¿Dónde se encuentran los motores en la mayoría de los aviones comerciales?",
+          "opciones": ["En las alas", "En el timón", "En el fuselaje", "En el tren de aterrizaje"],
+          "respuesta": "En las alas"
+        },
+        {
+          "pregunta": "¿Cuál de las siguientes partes controla el movimiento lateral del avión?",
+          "opciones": ["Timón de dirección", "Alas", "Alerones", "Fuselaje"],
+          "respuesta": "Alerones"
+       },
+       {
+          "pregunta": "¿Qué parte del avión sostiene la estructura principal?",
+          "opciones": ["Fuselaje", "Motor", "Alerón", "Tren de aterrizaje"],
+          "respuesta": "Fuselaje"
+       }
+      ]
+    },
+    {
+      "id": 2,
+      "titulo": "Aerodinámica básica",
+      "preguntas": [
+        {
+          "pregunta": "¿Qué principio explica la sustentación del ala?",
+          "opciones": ["Principio de Bernoulli", "Tercer principio de Newton", "Ley de Arquímedes", "Ley de Pascal"],
+          "respuesta": "Principio de Bernoulli"
+        },
+        {
+          "pregunta": "¿Qué sucede al aumentar el ángulo de ataque?",
+          "opciones": ["Aumenta la sustentación", "Disminuye la sustentación", "Aumenta el peso", "No cambia nada"],
+          "respuesta": "Aumenta la sustentación"
+        },
+        {
+         "pregunta": "¿Cuál de las siguientes NO es una fuerza del vuelo?",
+         "opciones": ["Peso", "Sustentación", "Empuje", "Presión atmosférica"],
+         "respuesta": "Presión atmosférica"
+       },
+       {
+          "pregunta": "¿Qué ocurre si la resistencia del aire supera al empuje?",
+          "opciones": ["El avión desacelera", "El avión acelera", "El avión sube", "Nada cambia"],
+          "respuesta": "El avión desacelera"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "titulo": "Inglés aeronáutico",
+      "preguntas": [
+        {
+          "pregunta": "¿Qué significa 'Cleared for takeoff'?",
+          "opciones": ["Autorizado para despegar", "A la espera del aterrizaje", "Mantener posición", "Listo para rodar"],
+          "respuesta": "Autorizado para despegar"
+        },
+        {
+          "pregunta": "¿Qué palabra se usa para pedir repetir una transmisión?",
+          "opciones": ["Say again", "Repeat", "Confirm", "Copy"],
+          "respuesta": "Say again"
+        },
+        {
+         "pregunta": "¿Qué significa 'Take off'?",
+         "opciones": ["Despegar", "Aterrizar", "Virar", "Apagar motores"],
+         "respuesta": "Despegar"
+       },
+       {
+         "pregunta": "¿Qué significa la palabra 'Roger' en lenguaje aeronautico?",
+         "opciones": ["Permiso para despegar", "Mensaje recibido", "Cambio de frecuencia", "Aterrizando"],
+         "respuesta": "Mensaje recibido"
+       },
+       {
+         "pregunta": "¿Qué frase se usa para declarar una emergencia?",
+         "opciones": ["Standby", "Wilco", "Mayday", "Negative"],
+         "respuesta": "Mayday"
+       },
+        {
+          "pregunta": "¿Qué significa 'Hold short'?",
+          "opciones": ["Detenerse antes de cruzar la pista", "Despegar", "Rodar a pista", "Subir altitud"],
+          "respuesta": "Detenerse antes de cruzar la pista"
+        }
+      ]    
+    },
+    {
+      "id": 4,
+      "titulo": "Meteorología aeronáutica",
+      "preguntas": [
+        {
+          "pregunta": "¿Qué mide un altímetro barométrico?",
+          "opciones": ["Presión atmosférica convertida en altitud", "Velocidad del aire", "Temperatura ambiente", "Velocidad del viento"],
+          "respuesta": "Presión atmosférica convertida en altitud"
+        },
+        {
+          "pregunta": "¿Qué tipo de nube se asocia a tormentas eléctricas?",
+          "opciones": ["Cumulonimbo", "Estrato", "Cirro", "Cúmulo"],
+          "respuesta": "Cumulonimbo"
+        },
+        {
+         "pregunta": "¿Qué instrumento mide la presión atmosférica?",
+         "opciones": ["Anemómetro", "Barómetro", "Higrómetro", "Altímetro"],
+         "respuesta": "Barómetro"
+       },
+       {
+          "pregunta": "¿Qué significa el código METAR en meteorología aeronáutica?",
+          "opciones": ["Reporte meteorológico de aeródromo", "Mapa de vientos", "Plan de vuelo", "Manual de meteorología"],
+          "respuesta": "Reporte meteorológico de aeródromo"
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "titulo": "Instrumentos de vuelo",
+      "preguntas": [
+        {
+          "pregunta": "¿Qué indica el altímetro?",
+          "opciones": ["Altitud", "Velocidad", "Rumbo", "Presión de aceite"],
+          "respuesta": "Altitud"
+        },
+        {
+          "pregunta": "¿Qué instrumento muestra la actitud del avión respecto al horizonte?",
+          "opciones": ["Horizonte artificial", "Anemómetro", "Brújula", "Altímetro"],
+          "respuesta": "Horizonte artificial"
+        },
+        {
+          "pregunta": "¿Cuál mide la velocidad del aire?",
+          "opciones": ["Anemómetro", "Brújula", "Altímetro", "Rumbo indicador"],
+          "respuesta": "Anemómetro"
+        },
+        {
+          "pregunta": "¿Qué hace el indicador de viraje?",
+          "opciones": ["Muestra la inclinación en un giro", "Mide la velocidad vertical", "Calcula el empuje", "Controla los flaps"],
+          "respuesta": "Muestra la inclinación en un giro"
+        }
+      ]  
+    },
+    {
+      "id": 6,
+      "titulo": "Reglamentos aeronáuticos", 
+      "preguntas":[
+       {
+         "pregunta": "¿Qué organización regula la aviación civil internacional?",
+         "opciones": ["FAA", "OACI", "NASA", "EASA"],
+         "respuesta": "OACI"
+       },
+       {
+         "pregunta": "¿Qué documento autoriza a una persona a pilotar una aeronave?",
+         "opciones": ["Certificado médico", "Licencia de piloto", "Plan de vuelo", "Carné de identidad"],
+         "respuesta": "Licencia de piloto"
+       },
+       {
+          "pregunta": "¿Cuál es la edad mínima para obtener una licencia de piloto privado?",
+          "opciones": ["16 años", "17 años", "18 años", "21 años"],
+          "respuesta": "17 años"
+        },
+        {
+          "pregunta": "¿Qué autoridad regula la aviación civil en Colombia?",
+          "opciones": ["Aerocivil", "Fuerza Aérea", "Ministerio de Transporte", "OACI"],
+          "respuesta": "Aerocivil"
+        }
+     ]
+   },
+    {
+      "id": 7,
+      "titulo": "Controles y maniobras",
+      "preguntas": [
+        {
+          "pregunta": "¿Qué control se utiliza para cambiar la altitud del avión?",
+          "opciones": ["Elevadores", "Alerones", "Timón de dirección", "Flaps"],
+          "respuesta": "Elevadores"
+        },
+        {
+          "pregunta": "¿Qué maniobra implica un giro pronunciado del avión?",
+          "opciones": ["Viraje", "Ascenso", "Descenso", "Cabecera"],
+          "respuesta": "Viraje"
+        },
+        {
+         "pregunta": "¿Qué control se usa para aumentar la sustentación durante el despegue y aterrizaje?",
+         "opciones": ["Flaps", "Alerones", "Timón de dirección", "Elevadores"],
+         "respuesta": "Flaps"
+       }
+      ]
+    },
+    {
+      "id": 8,
+      "titulo": "Navegación aérea",
+      "preguntas": [
+        {
+          "pregunta": "¿Qué instrumento indica la dirección del avión respecto al norte magnético?",
+          "opciones": ["Indicador de rumbo", "Altímetro", "Velocímetro", "Horizonte artificial"],
+          "respuesta": "Indicador de rumbo"
+        },
+        {
+          "pregunta": "¿Qué sistema de navegación utiliza señales de radio para determinar la posición?",
+          "opciones": ["VOR", "GPS", "ADF", "ILS"],
+          "respuesta": "VOR"
+        },
+        {
+         "pregunta": "¿Qué significa la sigla GPS en navegación aérea?",
+         "opciones": ["Global Positioning System", "General Pilot System", "Ground Positioning Service", "Global Pilot Satellite"],
+         "respuesta": "Global Positioning System"
+       }
+      ]
+    },
+    {
+      "id": 9,
+      "titulo": "Procedimientos de emergencia",
+      "preguntas": [
+        {
+          "pregunta": "¿Qué acción se debe tomar en caso de pérdida de motor en vuelo?",
+          "opciones": ["Mantener velocidad y planear para aterrizaje", "Aumentar potencia al máximo", "Iniciar un giro pronunciado", "Descender rápidamente"],
+          "respuesta": "Mantener velocidad y planear para aterrizaje"
+        },
+        {
+          "pregunta": "¿Qué equipo se utiliza para comunicarse en caso de emergencia?",
+          "opciones": ["Radio de emergencia", "Teléfono móvil", "Señales visuales", "Linterna"],
+          "respuesta": "Radio de emergencia"    
+        },
+        {
+         "pregunta": "¿Cuál es la prioridad en una emergencia aérea?",
+         "opciones": ["Llenar un reporte", "Seguir el plan de vuelo", "Mantener el control de la aeronave", "Apagar los motores"],
+         "respuesta": "Mantener el control de la aeronave"
+        },
+        {
+         "pregunta": "¿Qué se recomienda hacer ante una alarma de incendio a bordo?",
+         "opciones": ["Ignorarla", "Buscar el origen y seguir procedimientos", "Aterrizar inmediatamente sin comunicación", "Abrir las ventanas"],
+         "respuesta": "Buscar el origen y seguir procedimientos"
+        } 
+
+      ]
+    },
+    {
+  "id": 10,
+  "titulo": "Seguridad aérea",
+  "preguntas": [
+    {
+      "pregunta": "¿Cuál es el objetivo principal de la seguridad aérea?",
+      "opciones": ["Evitar accidentes", "Incrementar el tráfico aéreo", "Reducir costos", "Aumentar la velocidad"],
+      "respuesta": "Evitar accidentes"
+    },
+    {
+      "pregunta": "¿Qué organización investiga los accidentes aéreos en EE.UU?",
+      "opciones": ["OACI", "NTSB", "AESA", "FAA"],
+      "respuesta": "NTSB"
+    },
+    {
+      "pregunta": "¿Cuál de los siguientes es un ejemplo de medida preventiva?",
+      "opciones": ["Capacitación de tripulación", "Esperar a que ocurra un incidente", "Ignorar reportes", "Reducir inspecciones"],
+      "respuesta": "Capacitación de tripulación"
+    },
+    {
+          "pregunta": "¿Qué significa CRM en aviación?",
+          "opciones": ["Crew Resource Management", "Cabin Risk Mode", "Control Room Manual", "Crew Risk Management"],
+          "respuesta": "Crew Resource Management"
+    }
+  ]
+} 
+  ]
+}
