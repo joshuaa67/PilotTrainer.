@@ -16,72 +16,71 @@
     <img id="avion" class="avion" src="https://uploads.onecompiler.io/43d6bw78q/443j6f262/png-transparent-travel-drawing-airplane-aircraft-vehicle-model-aircraft-line-airliner-flap-removebg-preview.png" alt="avión" />
   </div>
  <script>
-    const mapa = document.getElementById("mapa");
-    const avion = document.getElementById("avion");
+  const mapa = document.getElementById("mapa");
+  const avion = document.getElementById("avion");
 
-    // 🏝️ Posiciones de islas actualizadas
-    const islasData = [
-      { x: -200, y: 220, nombre: "Partes del avión", img: "https://uploads.onecompiler.io/43d6bw78q/443qntsyk/Island.png" },
-      { x: 50,   y: 50, nombre: "Aerodinámica básica", img: "https://uploads.onecompiler.io/43d6bw78q/443qntsyk/Nivel%202.png" },
-      { x: 250,  y: 250, nombre: "Inglés aeronáutico", img: "https://uploads.onecompiler.io/43d6bw78q/443qntsyk/Nivel%204.png", especial: true },
-      { x: 550,  y: 50, nombre: "Meteorología", img: "https://uploads.onecompiler.io/43d6bw78q/443qntsyk/Nivel%205.png" },
-      { x: 700,  y: 230, nombre: "Instrumentos de vuelo", img: "https://uploads.onecompiler.io/43d6bw78q/443qntsyk/Nivel%206.png" }
-    ];
+  const islasData = [
+  { x: -200, y: 320, nombre: "Partes del avión", img: "https://uploads.onecompiler.io/43d6bw78q/443qntsyk/Island.png" },
+  { x: 50,   y: 150, nombre: "Aerodinámica básica", img: "https://uploads.onecompiler.io/43d6bw78q/443qntsyk/Nivel%202.png" },
+  { x: 250,  y: 350, nombre: "Inglés aeronáutico", img: "https://uploads.onecompiler.io/43d6bw78q/443qntsyk/Nivel%204.png", especial: true },
+  { x: 550,  y: 150, nombre: "Meteorología", img: "https://uploads.onecompiler.io/43d6bw78q/443qntsyk/Nivel%205.png" },
+  { x: 830,  y: 320, nombre: "Instrumentos de vuelo", img: "https://uploads.onecompiler.io/43d6bw78q/443qntsyk/Nivel%206.png" }
+];
 
-    // 🏝️ Crear islas
-    islasData.forEach((isla, i) => {
-      const div = document.createElement("div");
-      div.classList.add("isla");
-      if (isla.especial) div.classList.add("especial");
+  // Crear islas
+  islasData.forEach((isla, i) => {
+    const div = document.createElement("div");
+    div.classList.add("isla");
+    if (isla.especial) div.classList.add("especial");
 
-      div.style.left = `${isla.x}px`;
-      div.style.top = `${isla.y}px`;
+    div.style.left = `${isla.x}px`;
+    div.style.top = `${isla.y}px`;
 
-      const img = document.createElement("img");
-      img.src = isla.img;
-      div.appendChild(img);
+    const img = document.createElement("img");
+    img.src = isla.img;
+    div.appendChild(img);
 
-      const tooltip = document.createElement("div");
-      tooltip.classList.add("tooltip");
-      tooltip.textContent = `Nivel ${i + 1}: ${isla.nombre}`;
-      div.appendChild(tooltip);
+    const tooltip = document.createElement("div");
+    tooltip.classList.add("tooltip");
+    tooltip.textContent = `Repaso ${i + 1}: ${isla.nombre}`;
+    div.appendChild(tooltip);
 
-      div.addEventListener("click", () => {
-        localStorage.setItem("nivelActual", i + 1);
-        window.location.href = "leccion.html";
-      });
+    // Al hacer clic, abre el repaso correspondiente
+    div.addEventListener("click", () => {
+  window.location.href = `repaso${i + 1}.html`;
+});
+    mapa.appendChild(div);
+  });
 
-      mapa.appendChild(div);
-    });
+  // Movimiento del avión
+  let i = 0;
+  let enMovimiento = true;
 
-    // ✈️ Movimiento automático del avión
-    let i = 0;
-    let enMovimiento = true;
+  function moverAvion() {
+    if (!enMovimiento) return;
+    const isla = islasData[i];
+    const destinoX = isla.x + 250;
+    const destinoY = isla.y - 30;
 
-    function moverAvion() {
-      if (!enMovimiento) return;
-      const isla = islasData[i];
-      const destinoX = isla.x + 200;
-      const destinoY = isla.y - 40;
+    avion.style.left = `${destinoX}px`;
+    avion.style.top = `${destinoY}px`;
 
-      avion.style.left = `${destinoX}px`;
-      avion.style.top = `${destinoY}px`;
-
-      if (i > 0 && isla.x < islasData[i - 1].x) {
-        avion.classList.add("volteado");
-      } else {
-        avion.classList.remove("volteado");
-      }
-
-      i = (i + 1) % islasData.length;
+    if (i > 0 && isla.x < islasData[i - 1].x) {
+      avion.classList.add("volteado");
+    } else {
+      avion.classList.remove("volteado");
     }
 
-    moverAvion();
-    setInterval(moverAvion, 4000);
+    i = (i + 1) % islasData.length;
+  }
 
-    avion.addEventListener("mouseenter", () => enMovimiento = false);
-    avion.addEventListener("mouseleave", () => enMovimiento = true);
-  </script>
+  moverAvion();
+  setInterval(moverAvion, 4000);
+
+  avion.addEventListener("mouseenter", () => enMovimiento = false);
+  avion.addEventListener("mouseleave", () => enMovimiento = true);
+</script>
+
 </body>
 </html>
 

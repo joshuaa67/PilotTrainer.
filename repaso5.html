@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Repaso - Instrumentos de Vuelo</title>
+  <link rel="stylesheet" href="estilos.css">
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(to bottom, #b3e5fc, #e1f5fe);
+      margin: 0;
+      padding: 0;
+      color: #004d40;
+    }
+
+    header {
+      text-align: center;
+      padding: 1rem;
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: #004d40;
+    }
+
+    .btn-volver {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      background: #0097a7;
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 12px;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: 0.3s;
+    }
+
+    .btn-volver:hover {
+      background: #004d40;
+      transform: scale(1.05);
+    }
+
+    .contenido-repaso {
+      max-width: 850px;
+      margin: 3rem auto;
+      background: rgba(255, 255, 255, 0.95);
+      padding: 2rem;
+      border-radius: 20px;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+      text-align: justify;
+      line-height: 1.6;
+    }
+
+    .contenido-repaso img {
+      display: block;
+      margin: 1.5rem auto;
+      max-width: 100%;
+      border-radius: 15px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    }
+
+    h2 {
+      text-align: center;
+      color: #00796b;
+      margin-bottom: 1rem;
+    }
+
+    ul {
+      margin-top: 1rem;
+      padding-left: 1.2rem;
+    }
+
+    li {
+      margin-bottom: 0.6rem;
+    }
+
+    /* 🌟 Botón para continuar al quiz */
+    .btn-quiz {
+      display: block;
+      margin: 2rem auto 0 auto;
+      background: linear-gradient(135deg, #00796b, #26a69a);
+      color: #fff;
+      border: none;
+      border-radius: 12px;
+      padding: 12px 28px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    }
+
+    .btn-quiz:hover {
+      transform: scale(1.05);
+      background: linear-gradient(135deg, #00897b, #4db6ac);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+    }
+
+    .btn-quiz:active {
+      transform: scale(0.97);
+    }
+    .btn-narrar {
+  display: block;
+  margin: 1rem auto;
+  background: linear-gradient(135deg, #00796b, #26a69a);
+  color: #fff;
+  border: none;
+  border-radius: 25px;
+  padding: 12px 25px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  transition: transform 0.2s ease, background 0.3s ease;
+}
+.btn-narrar:hover {
+  transform: scale(1.05);
+  background: linear-gradient(135deg, #00897b, #4db6ac);
+}
+.narracion-controles {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.narracion-controles .btn-narrar {
+  margin: 0 0.5rem;
+}
+.narracion-panel {
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 15px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  padding: 1rem 1.5rem;
+  text-align: center;
+  max-width: 500px;
+  margin: 1.5rem auto;
+}
+
+.narracion-panel h3 {
+  margin: 0 0 1rem 0;
+  color: #00695c;
+  font-weight: 600;
+}
+
+.botones-narracion {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.botones-narracion .btn-narrar {
+  flex: 1;
+  max-width: 130px;
+  padding: 10px 0;
+  font-size: 1rem;
+  background: linear-gradient(135deg, #00796b, #26a69a);
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.botones-narracion .btn-narrar:hover {
+  transform: scale(1.05);
+  background: linear-gradient(135deg, #00897b, #4db6ac);
+}
+
+  </style>
+</head>
+<body>
+  <button class="btn-volver" onclick="window.location.href='ruta.html'">← Volver</button>
+  <header>🧭 Repaso: Instrumentos de Vuelo</header>
+<div class="narracion-panel">
+  <h3>🎧 Narrador del contenido</h3>
+  <div class="botones-narracion">
+    <button class="btn-narrar" onclick="narrarTexto()">▶️ Escuchar</button>
+    <button class="btn-narrar" onclick="pausarNarracion()">⏸️ Pausar</button>
+    <button class="btn-narrar" onclick="detenerNarracion()">⏹️ Detener</button>
+  </div>
+</div>
+
+  <section class="contenido-repaso">
+    <h2>¿Qué son los instrumentos de vuelo?</h2>
+    <p>
+      Los instrumentos de vuelo son los dispositivos que proporcionan al piloto la información necesaria para controlar el avión con precisión y seguridad. 
+      Permiten conocer la posición, altitud, velocidad, rumbo y actitud del avión en todo momento, incluso cuando no hay referencias visuales externas.
+    </p>
+
+    <img src="https://uploads.onecompiler.io/43d6bw78q/4446qs85e/sistemas-de-navegacion-y-comunicacion.png" alt="Panel de instrumentos de vuelo" style="max-width:60%;">
+
+    <h2>Instrumentos Principales</h2>
+    <ul>
+      <li><b>Horizon­te artificial:</b> indica la inclinación del avión respecto al horizonte, fundamental para mantener el equilibrio.</li>
+      <li><b>Altímetro:</b> mide la altitud utilizando la presión atmosférica.</li>
+      <li><b>Velocímetro (anemómetro):</b> muestra la velocidad del avión respecto al aire.</li>
+      <li><b>Indicador de viraje y coordinación:</b> ayuda a realizar giros coordinados.</li>
+      <li><b>Brújula magnética:</b> muestra el rumbo según el campo magnético terrestre.</li>
+      <li><b>Variómetro:</b> indica la velocidad de ascenso o descenso.</li>
+    </ul>
+
+    <img src="https://uploads.onecompiler.io/43d6bw78q/4446qs85e/instrumentos-vuelo.png" alt="Los seis instrumentos básicos de vuelo"style="max-width:60%;">
+
+    <h2>El “T” Básico</h2>
+    <p>
+      En la mayoría de cabinas, los instrumentos se organizan en el llamado <b>“T básico”</b>: 
+      el horizonte artificial al centro, velocímetro a la izquierda, altímetro a la derecha y brújula giroscópica abajo. 
+      Esta disposición facilita una lectura rápida y eficiente durante el vuelo.
+    </p>
+
+    <h2>Importancia Operacional</h2>
+    <p>
+      En condiciones meteorológicas adversas, los pilotos dependen completamente de los instrumentos para mantener el control del avión. 
+      Por ello, la formación y el repaso constante de su uso son fundamentales para la seguridad aérea.
+    </p>
+
+    <button class="btn-quiz" onclick="irAlQuiz('instrumentos_de_vuelo')">Ir al quiz del tema</button>
+
+  </section>
+
+<script>
+function irAlQuiz(tema) {
+  window.location.href = `leccion.html?tema=${tema}`;
+}
+</script>
+  <script>
+function narrarTexto() {
+  const texto = document.querySelector('.contenido-repaso').innerText;
+  const narrador = new SpeechSynthesisUtterance(texto);
+  narrador.lang = 'es-ES';
+  narrador.rate = 1;
+  narrador.pitch = 1;
+  window.speechSynthesis.cancel(); // detener narraciones anteriores
+  window.speechSynthesis.speak(narrador);
+}
+</script>
+</body>
+</html>

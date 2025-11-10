@@ -3,7 +3,9 @@
     {
       "id": 1,
       "titulo": "Partes del avión",
-      "preguntas": [
+        "introduccion": "En esta lección aprenderás a identificar las partes principales de un avión y sus funciones básicas. Conocerás cómo cada componente contribuye al vuelo.",
+      "preguntas": 
+       [
         {
           "pregunta": "¿Qué parte del avión genera la sustentación?",
           "opciones": ["Ala", "Fuselaje", "Timón", "Tren de aterrizaje"],
@@ -29,6 +31,7 @@
     {
       "id": 2,
       "titulo": "Aerodinámica básica",
+      "introduccion": "Aquí aprenderás los fundamentos de la aerodinámica: cómo se comporta el aire alrededor de las alas, las fuerzas que actúan sobre un avión y por qué puede mantenerse en vuelo. Conocerás conceptos clave como sustentación, empuje, peso y resistencia.",
       "preguntas": [
         {
           "pregunta": "¿Qué principio explica la sustentación del ala?",
@@ -54,7 +57,7 @@
     },
     {
       "id": 3,
-      "titulo": "Inglés aeronáutico",
+      "titulo": "Inglés aeronáutico","introduccion": "En esta sección explorarás las expresiones, frases y vocabulario técnico más usados en el entorno aeronáutico. El objetivo es familiarizarte con el lenguaje estándar de la aviación para mejorar la comunicación entre pilotos y controladores.",
       "preguntas": [
         {
           "pregunta": "¿Qué significa 'Cleared for takeoff'?",
@@ -91,6 +94,7 @@
     {
       "id": 4,
       "titulo": "Meteorología aeronáutica",
+      "introduccion": "Aprenderás los conceptos esenciales sobre las condiciones meteorológicas que afectan el vuelo: formación de nubes, presión atmosférica, viento, temperatura y visibilidad. Este conocimiento es vital para planificar y operar un vuelo de manera segura.",
       "preguntas": [
         {
           "pregunta": "¿Qué mide un altímetro barométrico?",

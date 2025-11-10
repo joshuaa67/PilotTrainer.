@@ -14,7 +14,7 @@
   </header>
 
   <main class="contenido fade-in">
-  <!-- 🧭 Pantalla de introducción antes del quiz -->
+  <!-- Pantalla de introducción antes del quiz -->
 <div id="introLeccion">
   <h2 id="tituloLeccion">Cargando lección...</h2>
   <p id="descripcionLeccion">Explora el contenido de esta lección antes de comenzar el desafío.</p>
@@ -29,7 +29,7 @@
 
 </div>
 
-  <!-- 📘 Contenedor de preguntas (oculto hasta que se pulse comenzar) -->
+  <!--ontenedor de preguntas (oculto hasta que se pulse comenzar) -->
   <div id="contenedorPreguntas" style="display:none;"></div>
 
   <button id="btnSiguiente" class="btn-principal" style="display:none;">Siguiente pregunta ➜</button>
@@ -53,7 +53,7 @@
   // 🔹 Información de cada lección
   const temasInfo = {
   partes_del_avion: {
-    nombre: "Partes del avión ✈️",
+    nombre: "Partes del avión ",
     descripcion: "Aprende las partes esenciales de una aeronave: fuselaje, alas, timón, alerones y tren de aterrizaje.",
     contenido: `
       <ul class="lista-leccion">
@@ -63,11 +63,11 @@
         <li><strong>Alerones:</strong> Permiten el movimiento de alabeo o inclinación lateral.</li>
         <li><strong>Tren de aterrizaje:</strong> Soporta la aeronave en el suelo durante el despegue y el aterrizaje.</li>
       </ul>
-      <img src="https://uploads.onecompiler.io/43d6bw78q/443kjg5uy/Air%60plne-Photoroom.png" alt="Partes del avión" class="img-leccion">
+      <img src="https://uploads.onecompiler.io/43d6bw78q/443kjg5uy/Air%60plne-Photoroom.png" alt="Partes del avión" class="img-leccion"style="max-width:50%;">
     `
   },
   aerodinamica: {
-    nombre: "Aerodinámica básica 🌀",
+    nombre: "Aerodinámica básica ",
     descripcion: "Descubre las cuatro fuerzas del vuelo: sustentación, peso, empuje y resistencia.",
     contenido: `
       <p>La aerodinámica estudia cómo el aire interactúa con el avión en vuelo. Existen <strong>cuatro fuerzas fundamentales</strong>:</p>
@@ -77,11 +77,11 @@
         <li>➡️ <strong>Empuje:</strong> producido por los motores o hélices.</li>
         <li>⬅️ <strong>Resistencia:</strong> oposición del aire al avance.</li>
       </ul>
-      <img src="https://uploads.onecompiler.io/43d6bw78q/443kjg5uy/image%20212.png" alt="Fuerzas del vuelo" class="img-leccion">
+      <img src="https://uploads.onecompiler.io/43d6bw78q/443kjg5uy/image%20212.png" alt="Fuerzas del vuelo" class="img-leccion"style="max-width:50%;">
     `
   },
   ingles_aeronautico: {
-    nombre: "Inglés aeronáutico 🗣️",
+    nombre: "Inglés aeronáutico ",
     descripcion: "Domina las frases más comunes utilizadas entre pilotos y controladores aéreos.",
     contenido: `
       <p>El inglés aeronáutico es el idioma estándar de comunicación aérea. Algunas expresiones básicas son:</p>
@@ -91,11 +91,11 @@
         <li><strong>Stand by:</strong> Espere un momento.</li>
         <li><strong>Mayday:</strong> Emergencia grave.</li>
       </ul>
-      <img src="https://uploads.onecompiler.io/43d6bw78q/443kjg5uy/Language.png" alt="Comunicación piloto-control" class="img-leccion">
+      <img src="https://uploads.onecompiler.io/43d6bw78q/443kjg5uy/Language.png" alt="Comunicación piloto-control" class="img-leccion"style="max-width:50%;">
     `
   },
   meteorologia: {
-    nombre: "Meteorología aeronáutica ☁️",
+    nombre: "Meteorología aeronáutica ",
     descripcion: "Comprende cómo el clima afecta el vuelo: tipos de nubes, presión y velocidad del viento.",
     contenido: `
       <p>El conocimiento del clima es vital para la seguridad aérea. Algunos conceptos básicos:</p>
@@ -104,11 +104,11 @@
         <li><strong>Presión atmosférica:</strong> influye en la lectura del altímetro.</li>
         <li><strong>Viento cruzado:</strong> afecta el control en despegue y aterrizaje.</li>
       </ul>
-      <img src="https://upload.wikimedia.org/wikipedia/commons/7/7b/CumulonimbusClouds.jpg" alt="Cumulonimbos" class="img-leccion">
+      <img src="https://uploads.onecompiler.io/43d6bw78q/4446qs85e/687df8854514c.r_d.972-489-2339%20(1).png" alt="Cumulonimbos" class="img-leccion"style="max-width:50%;">
     `
   },
   instrumentos_de_vuelo: {
-    nombre: "Instrumentos de vuelo 🧭",
+    nombre: "Instrumentos de vuelo ",
     descripcion: "Conoce los instrumentos clave de cabina: altímetro, horizonte artificial, anemómetro y brújula.",
     contenido: `
       <ul class="lista-leccion">
@@ -117,11 +117,11 @@
         <li><strong>Horizonte artificial:</strong> Muestra la actitud del avión.</li>
         <li><strong>Brújula:</strong> Indica la dirección o rumbo magnético.</li>
       </ul>
-      <img src="https://upload.wikimedia.org/wikipedia/commons/5/5b/Basic_flight_instruments_spanish.png" alt="Instrumentos básicos" class="img-leccion">
+      <img src="https://uploads.onecompiler.io/43d6bw78q/4446qs85e/instrumentos-vuelo.png" alt="Instrumentos básicos" class="img-leccion"style="max-width:50%;">
     `
   },
   reglamentos: {
-    nombre: "Reglamentos aeronáuticos 📘",
+    nombre: "Reglamentos aeronáuticos ",
     descripcion: "Conoce las normas que regulan la aviación civil a nivel nacional e internacional.",
     contenido: `
       <p>Las regulaciones garantizan la seguridad de las operaciones aéreas. Están establecidas por organismos nacionales e internacionales.</p>
@@ -130,11 +130,11 @@
         <li><strong>Aerocivil:</strong> Autoridad que regula la aviación civil en Colombia.</li>
         <li><strong>Licencia de piloto:</strong> Documento que certifica la capacitación de un piloto.</li>
       </ul>
-      <img src="https://upload.wikimedia.org/wikipedia/commons/9/9d/ICAO_logo.png" alt="OACI" class="img-leccion">
+      <img src="https://uploads.onecompiler.io/43d6bw78q/4446qs85e/aeronautica%20civil.png" alt="OACI" class="img-leccion"style="max-width:50%;">
     `
   },
   controles_y_maniobras: {
-    nombre: "Controles y maniobras 🎚️",
+    nombre: "Controles y maniobras ",
     descripcion: "Aprende a manejar los controles del avión y a realizar maniobras básicas de vuelo.",
     contenido: `
       <ul class="lista-leccion">
@@ -143,11 +143,11 @@
         <li><strong>Timón de dirección:</strong> Controla el movimiento lateral (guiñada).</li>
         <li><strong>Flaps:</strong> Incrementan la sustentación durante el despegue y aterrizaje.</li>
       </ul>
-      <img src="https://upload.wikimedia.org/wikipedia/commons/4/46/Aileron_and_flap_diagram.svg" alt="Controles de vuelo" class="img-leccion">
+      <img src="https://uploads.onecompiler.io/43d6bw78q/4446qs85e/CessnaTroisAxesEsp.png" alt="Controles de vuelo" class="img-leccion">
     `
   },
   navegacion_aerea: {
-    nombre: "Navegación aérea 🗺️",
+    nombre: "Navegación aérea ",
     descripcion: "Descubre cómo los pilotos determinan su posición y rumbo en el espacio aéreo.",
     contenido: `
       <p>La navegación aérea se basa en instrumentos, coordenadas y señales de radio para ubicar y guiar una aeronave.</p>
@@ -156,11 +156,11 @@
         <li><strong>VOR:</strong> Sistema de navegación basado en radiofrecuencia.</li>
         <li><strong>Indicador de rumbo:</strong> Muestra la dirección del avión respecto al norte.</li>
       </ul>
-      <img src="https://upload.wikimedia.org/wikipedia/commons/4/4e/Air_navigation_chart.jpg" alt="Carta de navegación" class="img-leccion">
+      <img src="https://uploads.onecompiler.io/43d6bw78q/4446qs85e/avion2.png" alt="Carta de navegación" class="img-leccion">
     `
   },
   procedimientos_de_emergencia: {
-    nombre: "Procedimientos de emergencia ⚠️",
+    nombre: "Procedimientos de emergencia ",
     descripcion: "Conoce las acciones que se deben seguir ante fallos o situaciones críticas en vuelo.",
     contenido: `
       <p>Los pilotos deben estar entrenados para actuar de forma rápida y segura durante una emergencia.</p>
@@ -169,11 +169,11 @@
         <li><strong>Comunicación:</strong> Usar la radio de emergencia para avisar a control.</li>
         <li><strong>Fuego a bordo:</strong> Identificar el origen y aplicar procedimientos de extinción.</li>
       </ul>
-      <img src="https://upload.wikimedia.org/wikipedia/commons/7/79/Emergency_landing_Boeing.jpg" alt="Emergencia aérea" class="img-leccion">
+      <img src="https://uploads.onecompiler.io/43d6bw78q/4446qs85e/pngtree-emergency-plan-documents-in-paper-binder-vector-png-image_6635970.png" alt="Emergencia aérea" class="img-leccion"style="max-width:50%;">
     `
   },
   seguridad_aerea: {
-    nombre: "Seguridad aérea 🛡️",
+    nombre: "Seguridad aérea ",
     descripcion: "Aprende los principios y sistemas que protegen la operación aérea.",
     contenido: `
       <p>La seguridad aérea busca prevenir accidentes mediante protocolos, formación y tecnología.</p>
@@ -183,12 +183,12 @@
         <li><strong>Investigación de accidentes:</strong> Permite aprender de los errores para evitarlos.</li>
         <li><strong>Organismos:</strong> La NTSB investiga accidentes; la OACI establece estándares globales.</li>
       </ul>
-      <img src="https://upload.wikimedia.org/wikipedia/commons/0/05/Aviation_Safety_Management_System.jpg" alt="Seguridad aérea" class="img-leccion">
+      <img src="https://uploads.onecompiler.io/43d6bw78q/4446qs85e/png-clipart-computer-icons-theme-security-miscellaneous-blue.png" alt="Seguridad aérea" class="img-leccion"style="max-width:50%;">
     `
   }
 };
 
-  // 🔹 Mostrar título y descripción del tema
+  // Mostrar título y descripción del tema
   const info = temasInfo[tema] || { 
     nombre: "Lección de aviación", 
     descripcion: "Explora este tema antes de comenzar." 
@@ -196,7 +196,21 @@
   tituloLeccion.textContent = info.nombre;
   document.getElementById("descripcionLeccion").textContent = info.descripcion;
 
-  document.getElementById("contenidoLeccion").innerHTML = info.contenido || "<p>Material introductorio no disponible.</p>";
+ // Cargar la introducción desde preguntas.json si existe
+fetch('preguntas.json')
+  .then(res => res.json())
+  .then(datos => {
+    const temaSeguro = (tema || "").toLowerCase();
+    const nivel = datos.niveles.find(n => n.titulo.toLowerCase().includes(temaSeguro));
+    if (nivel && nivel.introduccion) {
+      document.getElementById("contenidoLeccion").innerHTML = `<p>${nivel.introduccion}</p>`;
+    } else {
+      document.getElementById("contenidoLeccion").innerHTML = info.contenido || "<p>Material introductorio no disponible.</p>";
+    }
+  })
+  .catch(() => {
+    document.getElementById("contenidoLeccion").innerHTML = info.contenido || "<p>Material introductorio no disponible.</p>";
+  });
 
   // 🔹 Cargar preguntas desde el archivo JSON
 async function cargarPreguntas() {

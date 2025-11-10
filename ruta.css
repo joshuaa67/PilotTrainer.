@@ -1,16 +1,16 @@
 body {
-      margin: 0;
-      overflow: hidden;
-      font-family: 'Poppins', sans-serif;
-    }
+  margin: 0;
+  overflow: hidden;
+  font-family: 'Poppins', sans-serif;
+}
 
-    .mapa-container {
-      position: relative;
-      width: 100vw;
-      height: 100vh;
-      background: url('https://uploads.onecompiler.io/43d6bw78q/443j6f262/Paisaje%204-Photoroom.png') center/cover no-repeat;
-      overflow: hidden;
-    }
+.mapa-container {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  background: linear-gradient(to bottom, #b3e5fc, #e1f5fe); /* 🌤️ Fondo limpio tipo cielo */
+  overflow: hidden;
+}
 
     header {
       position: absolute;
@@ -44,78 +44,78 @@ body {
       transform: scale(1.05);
     }
 
-    /* 🏝️ Islas */
+    /* Islas */
     .isla {
-      position: absolute;
-      width: 900px;
-      height: auto;
-      cursor: pointer;
-      transition: transform 0.3s ease, filter 0.3s ease;
-      z-index: 100;
-      pointer-events: auto;
-      animation: flotar 3s ease-in-out infinite alternate;
-    }
+  position: absolute;
+  width: 650px;
+  height: auto;
+  cursor: pointer;
+  transition: transform 0.3s ease, filter 0.3s ease;
+  z-index: 100;
+  pointer-events: auto;
+  animation: flotar 3s ease-in-out infinite alternate;
+}
 
-    /* 🌟 Isla 3 más grande */
-    .isla.especial {
-      transform: scale(1.3);
-      z-index: 110; /* un poco más al frente */
-      animation: resaltar 2.5s ease-in-out infinite alternate;
-    }
+.isla.especial {
+  width: 750px; /* Más grande que las otras */
+  z-index: 110;
+  animation: resaltar 2.5s ease-in-out infinite alternate;
+}
 
-    @keyframes resaltar {
-      from { filter: brightness(1); }
-      to { filter: brightness(1.3); }
-    }
+@keyframes resaltar {
+  from { filter: brightness(1); }
+  to { filter: brightness(1.25); }
+}
 
-    .isla img {
-      width: 100%;
-      height: auto;
-      display: block;
-      border: none;
-      background: transparent;
-      pointer-events: none;
-    }
+.isla img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border: none;
+  background: transparent;
+  pointer-events: none; /* ✅ evita solapamientos al hacer hover */
+}
 
-    .isla:hover {
-      transform: scale(1.05);
-      filter: brightness(1.15);
-    }
+.isla:hover {
+  transform: scale(1.08);
+  filter: brightness(1.15);
+  z-index: 120;
+}
 
-    .tooltip {
-      position: absolute;
-      bottom: 105%;
-      left: 50%;
-      transform: translateX(-50%);
-      background: rgba(0, 77, 64, 0.85);
-      color: #fff;
-      padding: 6px 12px;
-      border-radius: 8px;
-      font-size: 0.9rem;
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.3s;
-      white-space: nowrap;
-    }
+.tooltip {
+  position: absolute;
+  bottom: 105%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0, 77, 64, 0.85);
+  color: #fff;
+  padding: 6px 12px;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s;
+  white-space: nowrap;
+}
 
-    .isla:hover .tooltip {
-      opacity: 1;
-    }
+.isla:hover .tooltip {
+  opacity: 1;
+}
 
-    /* ✈️ Avión */
-    .avion {
-      position: absolute;
-      width: 250px;
-      z-index: 80;
-      transition: all 2s ease-in-out;
-      filter: drop-shadow(0 4px 6px rgba(0,0,0,0.3));
-    }
+/* Avión */
+.avion {
+  position: absolute;
+  width: 180px; /* ✈️ Más pequeño */
+  z-index: 80;
+  transition: all 2.5s ease-in-out;
+  filter: drop-shadow(0 4px 6px rgba(0,0,0,0.3));
+}
 
-    .avion.volteado {
-      transform: scaleX(-1);
-    }
+.avion.volteado {
+  transform: scaleX(-1);
+}
 
-    @keyframes flotar {
-      from { transform: translateY(0); }
-      to { transform: translateY(-10px); }
-    }
+@keyframes flotar {
+  from { transform: translateY(0); }
+  to { transform: translateY(-10px); }
+}
